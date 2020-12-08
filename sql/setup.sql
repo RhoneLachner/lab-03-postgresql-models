@@ -1,0 +1,30 @@
+CREATE TABLE books (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  title TEXT NOT NULL,
+  author TEXT,
+  url TEXT NOT NULL
+);
+-- CREATE TABLE guitars (
+--   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   brand TEXT NOT NULL,
+--   model TEXT,
+--   url TEXT NOT NULL
+-- );
+-- CREATE TABLE dogs (
+--   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   name TEXT NOT NULL,
+--   breed TEXT,
+--   url TEXT NOT NULL
+-- );
+-- CREATE TABLE plants (
+--   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   name TEXT NOT NULL,
+--   medicinaldescription TEXT,
+--   bioregion TEXT
+-- );
+-- CREATE TABLE flutes (
+--   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   brand TEXT NOT NULL,
+--   model TEXT,
+--   url TEXT NOT NULL
+-- );
