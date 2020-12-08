@@ -23,6 +23,18 @@ app.get('/books', (req, res) => {
     .then(books => res.send(books));
 });
 
+app.put('./books/:id', (req, res) => {
+  Book
+    .update(req.params.id, req.body)
+    .then(book => res.send(book));
+});
+
+app.delete('./books/:id', (req, res) => {
+  Book
+    .delete(req.params.id, req.body)
+    .then(book => res.send(book));
+});
+
 app.listen(port, () => {
   console.log(`started on ${port}`);
 });
