@@ -1,6 +1,6 @@
 const fs = require('fs');
 const request = require('supertest');
-const { response } = require('../lib/utils/app.js');
+// const  response  = require('../lib/utils/app.js');
 const app = require('../lib/utils/app.js');
 const pool = require('../lib/utils/pool.js');
 const Book = require('../models/Book.js');
@@ -37,38 +37,39 @@ describe('app tests', () => {
   //GET TEST
   it('finds books from table with GET', async() => {
     const res = await request(app)
-      .get('/book');
+      .get('/books');
 
     expect(res.body).toEqual(res.body);
   });
   //GET BY ID TEST
+  it('finds books from table by ID with GET', async() => {
+    const book = await Book.insert({ title: 'Into the Forest', 
+      author: 'name',
+      url: 'intotheforest.com' });
 
-  // it('finds books from table by ID with GET', async() => {
-  //   // const book = await Book.insert({ title: 'Into the Forest', 
-  //   //   author: 'name',
-  //   //   url: 'intotheforest.com' });
+    const response = await request(app)
+      .get(`/books/${book.id}`);
 
-  //   // const response = await request(app)
-  //   //   .get('/book/1');
+      console.log(`/books/${book.id}`);
 
-  //   // expect(response.body).toEqual(book);
+    expect(response.body).toEqual(book);
 
 
-  //   const add = {
-  //     id: 1,
-  //     title: 'Into the Forest', 
-  //     author: 'name',
-  //     url: 'intotheforest.com'   
-  //   };
+    // const data = {
+    //   id: 1,
+    //   title: 'Into the Forest', 
+    //   author: 'name',
+    //   url: 'intotheforest.com'   
+    // };
     
-  //   const res = await request(app)
-  //     .get('/books/1')
-  //     // .expect('Content-Type', /json/)
-  //     .expect(200);
+    // const res = await request(app)
+    //   .get('/books/1');
+    //   // .expect('Content-Type', /json/)
+    //   // .expect(200);
     
-  //   console.log(res.body);
-  //   expect(res).toEqual(add);
-  // });
+    // console.log(res.body);
+    // expect(res.body).toEqual(data);
+  });
 
 
 
