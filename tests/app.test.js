@@ -51,7 +51,6 @@ describe('app tests', () => {
       .get(`/books/${book.id}`);
 
     // console.log(`/books/${book.id}`);
-
     expect(response.body).toEqual(book);
   });
   //PUT TEST
@@ -70,7 +69,6 @@ describe('app tests', () => {
       });
 
     console.log(`/books/${book.id}`);
-
     expect(response.body).toEqual({
       ...book,
       title: 'Into the OTHER Forest', 
@@ -78,7 +76,6 @@ describe('app tests', () => {
     });
   });
   //DELETE TEST
-
   it('updates books from table by ID with PUT', async() => {
     const book = await Book.insert({ 
       title: 'Into the Forest', 
@@ -89,7 +86,6 @@ describe('app tests', () => {
       .delete(`/books/${book.id}`);
 
     console.log(`/books/${book.id}`);
-
     expect(response.body).toEqual(book);
   });
 
