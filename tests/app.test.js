@@ -50,29 +50,47 @@ describe('app tests', () => {
     const response = await request(app)
       .get(`/books/${book.id}`);
 
-      console.log(`/books/${book.id}`);
+    // console.log(`/books/${book.id}`);
 
     expect(response.body).toEqual(book);
-
-
-    // const data = {
-    //   id: 1,
-    //   title: 'Into the Forest', 
-    //   author: 'name',
-    //   url: 'intotheforest.com'   
-    // };
-    
-    // const res = await request(app)
-    //   .get('/books/1');
-    //   // .expect('Content-Type', /json/)
-    //   // .expect(200);
-    
-    // console.log(res.body);
-    // expect(res.body).toEqual(data);
   });
+  //PUT TEST
+  it('updates books from table by ID with PUT', async() => {
+    const book = await Book.insert({ 
+      title: 'Into the Forest', 
+      author: 'name',
+      url: 'intotheforest.com' });
 
+    const response = await request(app)
+      .put(`/books/${book.id}`)
+      .send({
+        title: 'Into the OTHER Forest', 
+        author: 'OTHER name',
+        url: 'intotheforest.com'
+      });
 
+    console.log(`/books/${book.id}`);
 
+    expect(response.body).toEqual({
+      ...book,
+      title: 'Into the OTHER Forest', 
+      author: 'OTHER name'
+    });
+  });
+  //DELETE TEST
 
+  it('updates books from table by ID with PUT', async() => {
+    const book = await Book.insert({ 
+      title: 'Into the Forest', 
+      author: 'name',
+      url: 'intotheforest.com' });
+
+    const response = await request(app)
+      .delete(`/books/${book.id}`);
+
+    console.log(`/books/${book.id}`);
+
+    expect(response.body).toEqual(book);
+  });
 
 });
