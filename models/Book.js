@@ -1,4 +1,4 @@
-const pool = require('../utils/pool');
+const pool = require('../lib/utils/pool');
 
 module.exports = class Book {
 id;
@@ -51,6 +51,7 @@ static async update(id, { title, author, url }) {
     `,
     [title, author, url, id]
   );
+  if(!rows[0]) throw new Error(`No book with id ${id}`);
 
   return new Book(rows[0]);
 }
@@ -60,6 +61,7 @@ static async delete(id) {
     'DELETE FROM books WHERE id=$1 RETURNING *',
     [id]
   );
+  if(!rows[0]) throw new Error(`No book with id ${id}`);
 
   return new Book(rows[0]);
 }
